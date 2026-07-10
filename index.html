@@ -91,14 +91,12 @@
             overflow: hidden;
             margin-bottom: 25px;
             flex-shrink: 0;
-            min-height: 300px; /* يحافظ على مكان الصورة حتى تكتمل */
         }
 
         .card-wrapper img {
             width: 100%;
             height: auto;
             display: block;
-            transition: opacity 0.5s ease;
         }
 
         .details-card {
@@ -216,7 +214,7 @@
     <div id="invitation-content">
         
         <div class="card-wrapper">
-            <img src="img1.png" alt="خواتم نموذج دعوة زفاف" id="img1" style="opacity: 0.3;">
+            <img src="img1.png" alt="خواتم نموذج دعوة زفاف">
         </div>
 
         <div class="countdown-container">
@@ -239,11 +237,11 @@
         </div>
 
         <div class="card-wrapper details-card">
-            <img src="img2.png" alt="تفاصيل نموذج دعوة زفاف" id="img2" style="opacity: 0.3;">
+            <img src="img2.png" alt="تفاصيل نموذج دعوة زفاف">
         </div>
 
         <a href="https://maps.app.goo.gl/R6UqqrGAsDX9iJ3n9" target="_blank" class="card-wrapper map-card">
-            <img src="img3.png" alt="موقع قاعة الأفراح" id="img3" style="opacity: 0.3;">
+            <img src="img3.png" alt="موقع قاعة الأفراح">
             <div class="map-overlay">
                 <i class="fa-solid fa-location-dot"></i>
                 <span>اضغط هنا لفتح الخريطة والاتجاهات</span>
@@ -253,22 +251,6 @@
     </div>
 
     <script>
-        // سكريبت لتسريع وتحسين استدعاء الصور الثقيلة بشكل منفصل
-        window.addEventListener('DOMContentLoaded', () => {
-            const setupImage = (id) => {
-                const img = document.getElementById(id);
-                if(img) {
-                    img.onload = () => { img.style.opacity = '1'; };
-                    // إعادة إسناد الرابط لضمان تفعيل الـ onload بشكل متزامن
-                    const currentSrc = img.src;
-                    img.src = currentSrc;
-                }
-            };
-            setupImage('img1');
-            setupImage('img2');
-            setupImage('img3');
-        });
-
         function openInvitation() {
             const openingScreen = document.getElementById('opening-screen');
             const invitationContent = document.getElementById('invitation-content');
