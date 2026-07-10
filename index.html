@@ -36,6 +36,7 @@
         #opening-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('cover.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -90,7 +91,6 @@
             overflow: hidden;
             margin-bottom: 25px;
             flex-shrink: 0;
-            min-height: 250px; /* الحفاظ على الهيكل حتى تحميل الصورة */
         }
 
         .card-wrapper img {
@@ -214,7 +214,7 @@
     <div id="invitation-content">
         
         <div class="card-wrapper">
-            <img src="" alt="خواتم نموذج دعوة زفاف" id="img1" loading="lazy">
+            <img src="img1.png" alt="خواتم نموذج دعوة زفاف">
         </div>
 
         <div class="countdown-container">
@@ -237,11 +237,11 @@
         </div>
 
         <div class="card-wrapper details-card">
-            <img src="" alt="تفاصيل نموذج دعوة زفاف" id="img2" loading="lazy">
+            <img src="img2.png" alt="تفاصيل نموذج دعوة زفاف">
         </div>
 
         <a href="https://maps.app.goo.gl/R6UqqrGAsDX9iJ3n9" target="_blank" class="card-wrapper map-card">
-            <img src="" alt="موقع قاعة الأفراح" id="img3" loading="lazy">
+            <img src="img3.png" alt="موقع قاعة الأفراح">
             <div class="map-overlay">
                 <i class="fa-solid fa-location-dot"></i>
                 <span>اضغط هنا لفتح الخريطة والاتجاهات</span>
@@ -251,27 +251,6 @@
     </div>
 
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const baseUrl = window.location.href.split('?')[0].split('#')[0];
-            const cleanBase = baseUrl.endsWith('index.html') ? baseUrl.replace('index.html', '') : (baseUrl.endsWith('/') ? baseUrl : baseUrl + '/');
-            const timestamp = new Date().getTime();
-            
-            // تحميل الغلاف أولاً لمنع التأخير
-            const openScreen = document.getElementById('opening-screen');
-            const bgImg = new Image();
-            bgImg.src = `${cleanBase}cover.png?v=${timestamp}`;
-            bgImg.onload = () => {
-                openScreen.style.backgroundImage = `url('${bgImg.src}')`;
-            };
-
-            // جدولة تحميل الصور الداخلية بعد عرض الواجهة مباشرة لتسريع الموقع
-            setTimeout(() => {
-                document.getElementById('img1').src = `${cleanBase}img1.png?v=${timestamp}`;
-                document.getElementById('img2').src = `${cleanBase}img2.png?v=${timestamp}`;
-                document.getElementById('img3').src = `${cleanBase}img3.png?v=${timestamp}`;
-            }, 300);
-        });
-
         function openInvitation() {
             const openingScreen = document.getElementById('opening-screen');
             const invitationContent = document.getElementById('invitation-content');
