@@ -214,7 +214,7 @@
     <div id="invitation-content">
         
         <div class="card-wrapper">
-            <img src="img1.png" alt="خواتم نموذج دعوة زفاف">
+            <img src="img1.png" alt="خواتم نموذج دعوة زفاف" id="img1">
         </div>
 
         <div class="countdown-container">
@@ -237,11 +237,11 @@
         </div>
 
         <div class="card-wrapper details-card">
-            <img src="img2.png" alt="تفاصيل نموذج دعوة زفاف">
+            <img src="img2.png" alt="تفاصيل نموذج دعوة زفاف" id="img2">
         </div>
 
         <a href="https://maps.app.goo.gl/R6UqqrGAsDX9iJ3n9" target="_blank" class="card-wrapper map-card">
-            <img src="img3.png" alt="موقع قاعة الأفراح">
+            <img src="img3.png" alt="موقع قاعة الأفراح" id="img3">
             <div class="map-overlay">
                 <i class="fa-solid fa-location-dot"></i>
                 <span>اضغط هنا لفتح الخريطة والاتجاهات</span>
@@ -251,6 +251,20 @@
     </div>
 
     <script>
+        // توليد مسار ديناميكي متوافق مع خوادم استضافة GitHub حتمياً لكسر الـ Cache
+        window.addEventListener('DOMContentLoaded', () => {
+            const baseUrl = window.location.href.split('?')[0].split('#')[0];
+            const cleanBase = baseUrl.endsWith('index.html') ? baseUrl.replace('index.html', '') : (baseUrl.endsWith('/') ? baseUrl : baseUrl + '/');
+            
+            const timestamp = new Date().getTime();
+            
+            // تطبيق المسارات المطلقة بشكل ديناميكي
+            document.getElementById('opening-screen').style.backgroundImage = `url('${cleanBase}cover.png?v=${timestamp}')`;
+            document.getElementById('img1').src = `${cleanBase}img1.png?v=${timestamp}`;
+            document.getElementById('img2').src = `${cleanBase}img2.png?v=${timestamp}`;
+            document.getElementById('img3').src = `${cleanBase}img3.png?v=${timestamp}`;
+        });
+
         function openInvitation() {
             const openingScreen = document.getElementById('opening-screen');
             const invitationContent = document.getElementById('invitation-content');
